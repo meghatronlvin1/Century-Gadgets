@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "Century Gadgets",
+    "slug": "century-gadgets",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "scheme": "centurygadgets",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "ug.centurygadgets.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Used to photograph your smartphone for trade-in assessment.",
+        "NSPhotoLibraryUsageDescription": "Used to upload photos of your smartphone for trade-in valuation."
+      }
+    },
+    "android": {
+      "package": "ug.centurygadgets.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#102747"
+      },
+      "permissions": ["CAMERA", "READ_MEDIA_IMAGES"]
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-notifications"
+    ],
+    "extra": {
+      "apiBaseUrl": "https://your-production-api.example.com/api/v1"
+    }
+  }
+}

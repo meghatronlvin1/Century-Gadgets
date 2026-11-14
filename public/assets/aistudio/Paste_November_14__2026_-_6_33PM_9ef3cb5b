@@ -1,0 +1,639 @@
+# MASTER BUILD PROMPT: CENTURY GADGETS MOBILE APPLICATION
+
+## 1. Project overview
+
+Act as a senior mobile application architect, React Native engineer, backend engineer, database designer, UI/UX designer, e-commerce specialist, and QA engineer.
+
+Design, build, test, and document a production-oriented, full-stack mobile application for **Century Gadgets**, a Ugandan mobile phone and electronics retail business.
+
+The application must be a genuine mobile application built with **React Native and Expo**, not a website disguised as an app. It must support Android and iOS, connect to a real backend and database, and be structured for deployment.
+
+The platform must allow customers to:
+
+- Browse and purchase smartphones and phone accessories.
+- Request a phone swap or trade-in using their existing device.
+- Learn about phones, technology, phone specifications, maintenance, and buying decisions.
+- Discover and watch educational content published on the Century Gadgets TikTok account.
+- Track orders, manage their accounts, contact the shop, and receive order updates.
+
+Build a cohesive commercial platform that combines e-commerce, phone exchange services, and technology education.
+
+Do not create only static screens, a clickable prototype, or a frontend mockup. Implement the complete application flow, backend endpoints, database schema, authentication, business logic, and integrations. If an external service requires credentials, implement its integration interface and clearly document the credentials needed.
+
+## 2. Brand identity and visual design
+
+Brand name: Century Gadgets.
+
+Brand positioning: A trusted, modern, customer-focused Ugandan smartphone and electronics retailer.
+
+Mandatory colors:
+- Primary navy blue: #102747
+- White: #FFFFFF
+- Supporting light background: #F5F7FA
+- Secondary text: #667085
+- Borders: #E3E8EF
+- Success and error colors only for appropriate system feedback.
+
+Use white and navy blue as the dominant visual identity throughout the application. Do not introduce unrelated brand colors or use gradients excessively.
+
+Design direction:
+- Premium Apple-inspired interface quality without copying proprietary interface designs.
+- Clean typography, strong visual hierarchy, balanced whitespace, high-quality product imagery, and elegant transitions.
+- Modern product cards with rounded corners and subtle shadows.
+- Smooth bottom navigation, intuitive search, filter sheets, skeleton loading states, and polished empty states.
+- Responsive layouts for different phone sizes and accessibility-friendly text sizes.
+- Native-feeling navigation and interactions on both iOS and Android.
+
+Avoid generic template layouts, cluttered screens, excessive animation, fake product reviews, placeholder statistics, and decorative elements that reduce usability.
+
+Create a reusable design system containing colors, typography, spacing, radii, buttons, cards, input fields, badges, modals, loading indicators, and error states.
+
+## 3. Required technology stack
+
+Mobile application:
+- React Native.
+- Expo and TypeScript.
+- Expo Router for navigation.
+- React Native Reanimated for purposeful animations.
+- React Hook Form and Zod for form validation.
+- TanStack Query for server state and API caching.
+- Zustand or an equivalent lightweight solution for shared client state.
+- Expo SecureStore for sensitive session tokens where appropriate.
+- Expo Notifications for push notifications.
+- Expo Image or another appropriate image-loading solution.
+
+Backend:
+- Node.js.
+- TypeScript.
+- NestJS or a well-structured Express API.
+- PostgreSQL relational database.
+- Prisma ORM and database migrations.
+- Secure authentication with short-lived access tokens and appropriately managed refresh sessions.
+- Role-based access control.
+- Object storage for product images, swap photographs, and other uploaded media.
+- Background jobs for notifications and other asynchronous tasks where necessary.
+
+Infrastructure:
+- Environment-based configuration.
+- Separate development, testing, and production environments.
+- API documentation using OpenAPI/Swagger.
+- Automated testing and error monitoring.
+- CI/CD-ready configuration.
+
+Choose a coherent implementation rather than combining unnecessary libraries. Explain any substitutions required by the selected development platform.
+
+## 4. Application navigation
+
+Create five main bottom-navigation tabs:
+
+1. Home
+2. Shop
+3. Swap
+4. Learn
+5. Account
+
+Keep the navigation consistent throughout the app.
+
+The cart should be accessible from the shopping experience and through a persistent shopping-cart icon in the appropriate header. Display the cart item count when relevant.
+
+## 5. Home screen
+
+Build a premium home screen featuring:
+
+- Century Gadgets branding and a personalized greeting when authenticated.
+- Search bar with product autocomplete.
+- Shopping cart icon.
+- A hero section highlighting featured smartphones and current promotions.
+- Categories for iPhones, Samsung, Tecno, Infinix, Google Pixel, Redmi/Xiaomi, accessories, and other configured brands.
+- Best-selling products.
+- Recently added products.
+- Recommended devices based on customer-selected preferences.
+- A prominent phone-swap promotional section.
+- An educational section titled “Learn Before You Buy.”
+- Latest videos from the Century Gadgets TikTok account.
+- Featured accessories and compatible products.
+- Store contact details, location, opening hours, and customer-support entry points.
+
+All product collections and promotions must be populated from the backend or a clearly defined content-management system.
+
+Do not invent sales figures, ratings, discounts, availability, or promotional claims.
+
+## 6. Smartphone and accessory shopping
+
+Build a complete product catalogue.
+
+Each product should support:
+
+- Product name and brand.
+- Model and storage capacity.
+- Color options.
+- New, refurbished, or used condition.
+- Product images and optional videos.
+- Current selling price in Ugandan shillings (UGX).
+- Availability and stock quantity.
+- Warranty terms.
+- Key specifications.
+- Battery health for used devices where applicable and verified.
+- Network and SIM compatibility.
+- Seller-defined product condition grading.
+- Delivery and collection options.
+- Related accessories.
+- Product comparison.
+- Customer reviews, subject to verification and moderation.
+
+Product listing functionality:
+- Search by name, model, brand, or specification.
+- Filter by price, brand, storage, condition, availability, and other relevant attributes.
+- Sort by price, newest, popularity, and relevance.
+- Pagination or efficient infinite scrolling.
+- Save products to a wishlist.
+- Compare selected devices side by side.
+
+Product detail page:
+- High-resolution image gallery.
+- Price and stock status.
+- Product specifications.
+- Available variants.
+- Warranty and return information.
+- Add-to-cart and buy-now buttons.
+- Delivery estimates based on configured delivery zones.
+- Related products and accessories.
+- Share product functionality.
+- A clear call to request a swap involving the selected phone.
+
+All prices, stock levels, and order totals must be verified by the backend. Never trust client-submitted prices.
+
+## 7. Shopping cart and checkout
+
+Implement a functional shopping cart that supports:
+
+- Add and remove items.
+- Change quantities where appropriate.
+- Select product variants.
+- Update stock availability.
+- Persist the cart for authenticated customers.
+- Recalculate totals whenever the cart changes.
+- Apply valid discount codes if enabled.
+- Display delivery fees separately.
+- Show the final total in UGX.
+
+Checkout steps:
+
+1. Review cart.
+2. Enter customer contact information.
+3. Enter delivery address or choose store collection.
+4. Select an available delivery method.
+5. Review the order summary.
+6. Select a supported payment method.
+7. Confirm the order.
+8. Display an order confirmation and reference number.
+
+Support configurable payment methods suitable for Uganda, including mobile money through an authorized payment provider and any other payment methods the business enables.
+
+Payment requirements:
+- Use a provider's official API or SDK.
+- Verify payment status using authenticated server-side webhooks.
+- Use idempotency protections to prevent duplicate payment processing.
+- Never store mobile money PINs, card security codes, or raw payment credentials.
+- Do not mark an order as paid based only on a client-side success message.
+- Support pending, successful, failed, refunded, and cancelled payment states.
+
+If payment credentials are unavailable during development, provide a sandbox integration and clearly label simulated transactions. Never represent simulated payments as real transactions.
+
+## 8. Phone swap and trade-in system
+
+This is a core business feature and must receive the same engineering attention as the shopping module.
+
+Create a dedicated Swap tab where customers can submit their current phone for assessment and request an exchange for another device.
+
+Customer swap journey:
+
+Step 1: Select the phone the customer wants to receive from the Century Gadgets catalogue.
+
+Step 2: Enter the current phone details:
+- Brand and model.
+- Storage capacity.
+- Color.
+- General physical condition.
+- Battery condition, where relevant.
+- Screen and camera condition.
+- Whether the phone powers on.
+- Whether it has been repaired.
+- Whether accessories or the original box are included.
+
+Step 3: Upload clear photographs of the current device from multiple angles.
+
+Step 4: Answer a device ownership and eligibility declaration. Do not collect account passwords or device unlock codes.
+
+Step 5: Submit the request for review.
+
+Step 6: Receive an assessment status and any questions from Century Gadgets.
+
+Step 7: Review the staff-provided trade-in valuation and proposed exchange terms.
+
+Step 8: Accept or decline the offer.
+
+Step 9: If accepted, choose an available inspection appointment or an approved store drop-off process.
+
+Step 10: Complete physical inspection and device verification.
+
+Step 11: Receive the final confirmed offer and pay any applicable difference through the approved checkout flow.
+
+Step 12: Track the swap until completion.
+
+Swap valuation rules:
+- Do not promise an automatic final valuation based solely on customer inputs or photographs.
+- Any automated indicative estimate must be clearly labelled as provisional.
+- Allow authorized staff to set or revise the trade-in value.
+- Calculate the indicative difference between the selected phone's current selling price and the proposed trade-in value.
+- Recalculate the final payable amount after the physical inspection.
+- Require customer approval of any revised offer before completion.
+- Maintain an audit trail of every valuation change.
+
+Swap statuses should include:
+- Draft.
+- Submitted.
+- Under review.
+- More information required.
+- Inspection scheduled.
+- Inspection completed.
+- Offer issued.
+- Offer accepted.
+- Offer declined.
+- Awaiting payment.
+- Awaiting exchange.
+- Completed.
+- Cancelled.
+
+Build a customer swap dashboard showing all requests, status history, offers, appointment details, and staff messages.
+
+Staff must have a dashboard to review requests, inspect submissions, manage appointments, issue valuations, communicate with customers, and complete exchanges.
+
+## 9. Century Gadgets Learn hub
+
+Create a technology education section that helps customers make informed purchasing decisions.
+
+Content categories:
+- Smartphone buying guides.
+- iPhone tips and tutorials.
+- Samsung tips and tutorials.
+- Android tips and tutorials.
+- Battery health and charging.
+- Phone maintenance and care.
+- Camera and photography tips.
+- Smartphone security and privacy.
+- Original versus counterfeit devices.
+- Refurbished versus new phones.
+- Understanding RAM, storage, processors, and refresh rates.
+- How to verify a phone before buying it.
+- Common smartphone problems and troubleshooting.
+- Accessories and compatibility.
+- Phone comparisons.
+- New technology announcements.
+
+Every article or lesson should support:
+- Title and cover image.
+- Short description.
+- Full educational content.
+- Relevant category and tags.
+- Author or editor.
+- Publication date.
+- Estimated reading time.
+- Related products.
+- Share functionality.
+- Bookmarks or saved articles.
+- Optional quizzes and knowledge checks.
+- Links to related educational videos.
+
+Include a “Which Phone Should I Buy?” guided experience. Ask users about their budget, preferred brand, intended use, camera requirements, storage needs, and battery priorities. Recommend matching products from the actual catalogue and explain why each recommendation fits.
+
+Educational content must be accurate, practical, and understandable to non-technical customers. Distinguish verified specifications from opinions, and include appropriate publication or update dates.
+
+## 10. TikTok integration
+
+Create a dedicated video-learning feed for the official Century Gadgets TikTok account.
+
+Requirements:
+- Store the official TikTok profile URL in application configuration.
+- Display approved video thumbnails, titles, descriptions, and links.
+- Allow customers to open videos in TikTok or an authorized web destination.
+- Associate videos with relevant products, categories, and educational articles.
+- Allow staff to curate and reorder featured videos.
+- Include a “Follow Century Gadgets on TikTok” action.
+- Provide an option to watch related tutorials within the app only when a permitted video source or embedding mechanism supports it.
+
+Integration rules:
+- Do not scrape TikTok pages or bypass platform restrictions.
+- Investigate available official TikTok APIs and authorized embedding options before implementation.
+- If automatic synchronization is unavailable, provide a CMS where staff can manually add the official video URL, title, thumbnail, category, and linked products.
+- Never fabricate views, likes, comments, or engagement statistics.
+- Handle removed or unavailable videos gracefully.
+
+The goal is to make the app an educational extension of the Century Gadgets TikTok account, encouraging customers to learn and then explore or purchase relevant devices.
+
+## 11. Customer accounts and profiles
+
+Implement secure registration, sign-in, sign-out, session management, and account recovery.
+
+Support:
+- Email and/or phone-number registration.
+- Appropriate verification workflows.
+- Customer profile editing.
+- Saved delivery addresses.
+- Order history.
+- Order detail pages.
+- Swap history.
+- Wishlists.
+- Saved educational articles.
+- Notification preferences.
+- Customer-support history.
+- Account deletion requests.
+
+Only collect personal information required to operate the service. Protect customer details and uploaded device photographs through access controls and appropriate retention policies.
+
+## 12. Order management and delivery
+
+Customers must be able to:
+- View order status.
+- Access order reference numbers.
+- Review purchased products.
+- View payment status.
+- View delivery or collection details.
+- Receive status notifications.
+- Request cancellation or assistance according to configured order rules.
+
+Order statuses:
+- Pending payment.
+- Paid.
+- Confirmed.
+- Processing.
+- Ready for collection.
+- Dispatched.
+- Delivered.
+- Cancelled.
+- Refund pending.
+- Refunded.
+
+Create configurable delivery zones, delivery fees, collection options, and delivery instructions.
+
+Do not promise real-time courier tracking unless a genuine tracking integration is configured. Otherwise, display the most recent verified order status and delivery updates.
+
+## 13. Notifications and communication
+
+Implement in-app notifications and push notifications for:
+- Order confirmation.
+- Payment status changes.
+- Dispatch and delivery updates.
+- Swap request submission.
+- Swap valuation and offer updates.
+- Inspection appointments.
+- New educational content.
+- Relevant promotions, subject to customer preferences.
+
+Allow staff to send transactional notifications through approved channels.
+
+Provide a customer-support page with:
+- Call support.
+- WhatsApp support using a configurable business number.
+- Store location and directions.
+- Frequently asked questions.
+- Contact form.
+
+Configure Century Gadgets' real phone numbers, WhatsApp number, address, opening hours, and social-media links through environment variables or the admin system. Do not invent contact information.
+
+## 14. Admin and staff management
+
+Build a secure web-based administration dashboard backed by the same API. This dashboard is a management tool, not a replacement for the required React Native mobile application.
+
+Use a suitable framework such as Next.js with TypeScript.
+
+Admin functionality:
+- Dashboard overview of orders, sales, stock, and pending swap requests.
+- Product creation, editing, archiving, and deletion where permitted.
+- Product variant and inventory management.
+- Category and brand management.
+- Product image uploads.
+- Order and payment status management.
+- Refund workflows subject to provider support.
+- Swap assessment and valuation management.
+- Inspection appointment management.
+- Customer account support.
+- Educational article creation and editing.
+- TikTok video curation.
+- Homepage banner and promotion management.
+- Discount code management.
+- Delivery zones and fees.
+- Notification management.
+- Staff accounts and role permissions.
+- Audit logs.
+- Reports and CSV exports.
+
+Use role-based access control with roles such as administrator, inventory manager, order manager, swap assessor, and content editor.
+
+Require stronger safeguards for sensitive operations, including refund approvals, stock adjustments, and valuation changes.
+
+## 15. Database design
+
+Design a normalized PostgreSQL database with appropriate indexes, constraints, foreign keys, and timestamps.
+
+Include entities for:
+- Users.
+- Roles and permissions.
+- Customer profiles.
+- Addresses.
+- Brands.
+- Categories.
+- Products.
+- Product variants.
+- Inventory movements.
+- Product images.
+- Wishlists.
+- Shopping carts.
+- Cart items.
+- Orders.
+- Order items.
+- Payments.
+- Refunds.
+- Delivery zones.
+- Deliveries.
+- Swap requests.
+- Swap device details.
+- Swap photographs.
+- Swap valuations and valuation history.
+- Inspection appointments.
+- Swap status history.
+- Customer and staff messages.
+- Educational articles.
+- Article categories and tags.
+- TikTok videos.
+- Bookmarks.
+- Notifications.
+- Reviews.
+- Promotions and discount codes.
+- Audit logs.
+
+Define database relationships and migration files. Use database transactions for order creation, inventory reservation, payment transitions, and swap completion.
+
+Maintain a reliable history of inventory changes and trade-in valuations.
+
+## 16. API architecture
+
+Implement versioned REST endpoints, for example under /api/v1.
+
+Organize endpoints into modules:
+- Authentication and accounts.
+- Products and catalogue.
+- Search and recommendations.
+- Cart and checkout.
+- Orders.
+- Payments and webhooks.
+- Inventory.
+- Swap requests and valuations.
+- Appointments.
+- Educational content.
+- TikTok videos.
+- Notifications.
+- Customer support.
+- Administration and reporting.
+
+Requirements:
+- Request validation.
+- Authentication and authorization middleware.
+- Consistent error responses.
+- Pagination, sorting, and filtering.
+- Rate limiting.
+- Secure file-upload validation.
+- Request logging with sensitive information redacted.
+- OpenAPI documentation.
+- Integration tests for critical business workflows.
+
+Do not expose administrative endpoints to unauthorized customers.
+
+## 17. Security and privacy
+
+Implement:
+- Secure password hashing.
+- Access and refresh token protection.
+- Rate limiting and abuse prevention.
+- Server-side validation.
+- SQL injection prevention through parameterized database access.
+- Cross-role access protection.
+- Secure upload handling.
+- Payment webhook signature verification.
+- Secrets stored in environment variables.
+- Appropriate CORS configuration for the admin dashboard.
+- Safe error messages that do not reveal internal implementation details.
+- Data export and deletion workflows.
+- Privacy notices and terms of service.
+
+Never hardcode API keys, database passwords, payment secrets, or privileged administrator credentials in source code.
+
+Provide a clear device trade-in policy and privacy notice. Do not request customers' device passwords, banking PINs, or other unnecessary secrets.
+
+## 18. Testing and quality assurance
+
+Write automated tests for:
+- Authentication and account permissions.
+- Product catalogue and filtering.
+- Cart calculations.
+- Stock validation and reservation.
+- Duplicate checkout prevention.
+- Payment webhook verification.
+- Order status transitions.
+- Refund authorization.
+- Swap submission and image upload.
+- Valuation calculations and revision approvals.
+- Swap status transitions.
+- Appointment management.
+- Admin access restrictions.
+- Educational content and video links.
+
+Include unit tests, API integration tests, and end-to-end tests for the most important customer journeys.
+
+Test on Android and iOS simulators or devices where available.
+
+Ensure that loading, empty, offline, error, and success states are implemented rather than ignored.
+
+## 19. Performance and accessibility
+
+Optimize product images and caching. Avoid unnecessary API requests and rerenders.
+
+Use list virtualization for large catalogues, sensible image dimensions, efficient pagination, and server-side filtering.
+
+Provide accessible labels, sufficient contrast, readable text, keyboard support in administrative forms, and clear feedback for all major actions.
+
+Do not store sensitive information in unprotected local storage.
+
+## 20. Required deliverables
+
+Produce a complete project repository with:
+
+1. React Native Expo mobile application.
+2. TypeScript backend API.
+3. PostgreSQL schema and Prisma migrations.
+4. Administrative dashboard.
+5. Authentication and role management.
+6. Product catalogue and inventory management.
+7. Cart, checkout, and payment integration structure.
+8. Complete phone-swap workflow.
+9. Educational Learn hub.
+10. TikTok video curation and linking.
+11. Notification system.
+12. Automated tests.
+13. Environment variable example file without real secrets.
+14. API documentation.
+15. README with exact setup and launch instructions.
+16. Database migration and seed instructions.
+17. Deployment instructions.
+18. Android build instructions.
+19. iOS build instructions.
+20. A list of required third-party accounts, credentials, and service costs.
+
+Seed the development database with clearly labelled sample products, articles, and videos. Never present sample data as verified live inventory.
+
+## 21. Development execution plan
+
+Work through the project in the following sequence:
+
+Phase 1: Establish the architecture, repository structure, design system, database schema, and environment configuration.
+
+Phase 2: Implement the backend, database migrations, authentication, and role-based permissions.
+
+Phase 3: Build the mobile application navigation, home screen, catalogue, search, product details, and cart.
+
+Phase 4: Implement checkout, payment-provider integration, orders, inventory consistency, and customer notifications.
+
+Phase 5: Implement the complete swap and trade-in workflow.
+
+Phase 6: Build the educational hub, phone recommendation experience, and TikTok content management.
+
+Phase 7: Build the administration dashboard and reporting functions.
+
+Phase 8: Write and execute automated tests, fix integration issues, and validate critical workflows.
+
+Phase 9: Document deployment, configure production services, and prepare Android and iOS release builds.
+
+Do not stop after generating the project structure or initial screens. Complete and test each phase before moving to the next. If output or execution limits prevent completing everything in one pass, state exactly what has been completed, what remains, and the next concrete implementation step.
+
+## 22. Definition of done
+
+The project is ready for acceptance when:
+
+- A customer can register and sign in.
+- The mobile app retrieves products from the live backend.
+- A customer can search for and select a product.
+- Cart totals are calculated and validated on the server.
+- Checkout works with a real configured payment sandbox or production provider.
+- Payment notifications are verified server-side.
+- Stock changes are consistent and auditable.
+- A customer can submit, track, and respond to a phone-swap offer.
+- Staff can assess a swap and approve a final valuation.
+- Educational articles and approved TikTok videos are manageable through the admin system.
+- Customer orders and swap requests are visible to authorized staff.
+- Tests cover the major business workflows.
+- Setup and deployment instructions have been verified.
+- No critical workflow depends on a fake success response or hardcoded sample data.
+
+Begin by producing the architecture, repository structure, database schema, and initial implementation plan. Then implement the actual application in working, testable increments.
+
+Prioritize functional correctness, data security, a polished user experience, and maintainability over superficial visual effects.
